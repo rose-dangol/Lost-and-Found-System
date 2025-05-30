@@ -1,0 +1,33 @@
+CREATE DATABASE lostlinkers;
+
+USE lostlinkers;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fullname VARCHAR(100) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+fullname: Admin
+userenam: admin1
+email: admin@gmail.com
+password: admin123
+
+Rose Dangol
+rosechan
+rosedangol@gmail.com
+rose123
+
+CREATE TABLE items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    type ENUM('Lost', 'Found') NOT NULL,
+    description TEXT NOT NULL,
+    status ENUM('Pending', 'Found') DEFAULT 'Pending',
+    image VARCHAR(255),
+    uploaded_by VARCHAR(100),
+    FOREIGN KEY (uploaded_by) REFERENCES users(username)
+);
